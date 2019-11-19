@@ -1,38 +1,29 @@
 kubectl installtion on local machine:
 -------------------------------------
-
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s
 https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-
 # chmod +x kubectl
 # sudo mv kubectl /usr/local/bin/
 
 Auto-complate kubectl
 ---------------------
-
 # echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 
 
 # gcloud config set project [PROJECT_ID]
-
 # gcloud config set compute/zone [COMPUTE_ZONE]
-
 # gcloud config set compute/region [COMPUTE_REGION]
-
 # gcloud components update
 
 create cluster in google kubernetes engine:
-
-
+-------------------------------------------
 # gcloud container clusters create [CLUSTER_NAME]
-
 # gcloud compute instances list
-
 # gcloud container clusters describe [CLUSTER_NAME]
 # gcloud container clusters list
-
-
 # gcloud container clusters get-credentials [CLUSTER_NAME]
 
-
+verify:
+-------
+# kubectl get config
