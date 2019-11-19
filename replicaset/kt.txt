@@ -1,0 +1,4 @@
+error: error sending request: Post
+https://104.196.160.178/api/v1/namespaces/lucifer/pods/httpd-replica-tm4m5/exec?command=bash&container=db&stdin=true&stdout=true&tty=true:
+dial tcp 104.196.160.178:443: connect: connection timed out
+
