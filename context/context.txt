@@ -1,0 +1,27 @@
+Definition
+----------
+A context element in a kubeconfig file is used to group access parameters under a convenient name. Each context has three parameters: cluster, namespace, and user. By default, the kubectl command-line tool uses parameters from the current context to communicate with the cluster.
+
+view context:
+-------------
+#kubectl config view
+
+
+current context
+---------------
+#kubectl config current-context
+
+switch context:
+---------------
+#kubectl config set-context $(kubectl config current-context) --namespace=[NAMESPACE NAME]
+#kubectl config set-context $(kubectl config current-context) --namespace=jino
+
+Find current namesapce
+----------------------
+#kubectl config get-contexts
+
+CURRENT   NAME          CLUSTER    AUTHINFO   NAMESPACE
+-------   ----          -------    --------   ---------
+          deafult                             default
+          kube-system
+    *     minikube      minikube    minikube  jino
