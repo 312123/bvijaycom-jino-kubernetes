@@ -1,0 +1,25 @@
+---
+#single pod with single container attached with host storage
+apiVersion: v1
+kind: Pod
+metadata:
+  name: database
+  namespace: lucifer
+  labels:
+    app: psql
+    tier: backend
+    version: master
+spec:
+  containers:
+  - name: psql
+    image: postgres
+    ports:
+      - containerPort: 5432
+    volumeMounts:
+      - name: pgdata
+        mountPath: /var/lib/postgresql/data
+  volumes:
+  - name: pgdata
+    hostPath:
+      path: /var/lib/postgres
+      type: DirectoryOrCreate
