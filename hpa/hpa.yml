@@ -1,0 +1,89 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: lucifer
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  replicas: 4
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: webserver
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3]}
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+        version: v1
+        tier: frond-end
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        ports:
+          - containerPort: 80
+            protocol: TCP
+        resources:
+          requests:         # Minimum Value
+            memory: "100Mi"
+            cpu: "250m"
+          limits:           # Maximum Value
+            memory: "128Mi"
+            cpu: "300m"     # 1 Core = 1000m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice
+  namespace: lucifer
+  labels:
+    role: web-service
+spec:
+  selector:
+    role: webserver
+    version: v1
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-deployment-vote
+  namespace: lucifer
+spec:
+  minReplicas: 4
+  maxReplicas: 15
+  targetCPUUtilizationPercentage: 5
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tesq
+  namespace: lucifer
+  annotations:
+     kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: jino.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: webservice
+          servicePort: 80
