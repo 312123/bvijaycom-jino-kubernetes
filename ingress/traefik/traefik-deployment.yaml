@@ -30,7 +30,7 @@ spec:
       volumes:
       - name: ssl
         secret:
-          secretName: traefik-cert
+          secretName: traefik-cert1
       - name: config
         configMap:
           name: traefik-conf
@@ -50,6 +50,10 @@ spec:
         - --configfile=/config/traefik.toml
         - --kubernetes
         - --logLevel=DEBUG
+        - --defaultentrypoints=http,https
+        - --entrypoints=Name:https Address::443
+        - --entrypoints=Name:http Address::80
+        - --api
 
 ---
 kind: Service
@@ -63,7 +67,10 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      name: web
+      name: http
+    - protocol: TCP
+      port: 443
+      name: https
     - protocol: TCP
       port: 8080
       name: admin
