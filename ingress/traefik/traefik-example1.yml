@@ -1,0 +1,92 @@
+#########################################################
+#                                                       #
+#                    NAMESPACE                          #
+#                                                       #
+#########################################################
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jino
+#########################################################
+#                                                       #
+#                    DEPLOYMENT                         #
+#                                                       #
+#########################################################
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-deployment
+  namespace: jino
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  replicas: 2
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: frontserver
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3]}
+  template:
+    metadata:
+      name: front
+      labels:
+        role: frontserver
+        version: v1
+        tier: frond-end
+    spec:
+      containers:
+        - name: front
+          image: httpd
+          ports:
+            - containerPort: 80
+              protocol: TCP
+#########################################################
+#                                                       #
+#                    SERVICES                           #
+#                                                       #
+#########################################################
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-service
+  namespace: jino
+  labels:
+    role: front-service
+spec:
+  selector:
+    role: frontserver
+    version: v1
+  type: ClusterIP
+  ports:
+    - port: 80
+#########################################################
+#                                                       #
+#                    INGRESS                            #
+#                                                       #
+#########################################################
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: httpd-service
+  namespace: jino
+  annotations:
+     kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: jjino.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: front-service
+          servicePort: 80

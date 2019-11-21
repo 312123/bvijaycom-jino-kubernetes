@@ -1,4 +1,9 @@
 ---
+#########################################################
+#                                                       #
+#                    DEPLOYMENT                         #
+#                                                       #
+#########################################################
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,6 +37,11 @@ spec:
           ports:
             - containerPort: 80
               protocol: TCP
+#########################################################
+#                                                       #
+#                    SERVICE                            #
+#                                                       #
+#########################################################
 ---
 apiVersion: v1
 kind: Service
@@ -46,17 +56,19 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
+#########################################################
+#                                                       #
+#                    INGRESS                            #
+#                                                       #
+#########################################################
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: test
   annotations:
-    kubernetes.io/ingress.class: traefik
-    ingress.kubernetes.io/ssl-redirect: "true"
+     kubernetes.io/ingress.class: traefik
 spec:
-  tls:
-  - secretName: traefik-cert
   rules:
   - host: fourtimes.com
     http:

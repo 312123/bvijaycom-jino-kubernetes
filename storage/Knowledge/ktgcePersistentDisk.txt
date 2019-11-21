@@ -1,0 +1,5 @@
+The Deployment "nginx" is invalid:
+spec.template.spec.volumes[0].gcePersistentDisk.readOnly: Invalid value: false:
+must be true for replicated pods > 1; GCE PD can only be mounted on multiple
+machines if it is read-only
+

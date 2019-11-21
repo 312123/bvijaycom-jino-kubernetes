@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: akil
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+  namespace: akil
+  labels:
+    app: web
+    tier: frontend
+spec:
+  containers:
+  - name: web
+    image: nginx
+    ports:
+      - containerPort: 80
+    volumeMounts:
+    - mountPath: /usr/share/nginx/html
+      name: gcpdisk
+  volumes:
+  - name: gcpdisk
+    gcePersistentDisk:
+      pdName: my-data-disk
+      fsType: ext4

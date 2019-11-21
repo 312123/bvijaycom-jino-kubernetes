@@ -1,0 +1,25 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+before_install:
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in encrypt.txt.enc -out encrypt.txt -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud componenets update kubectl
+  - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project [project ID]
+  - gcloud conf set compute/zone [us -east-1a]
+  - gcloud container cluster  get-credentials [cluster-name]
+  - echo "$docker_password" | docker login -u "$docker_username" --password-stdin
+  - docker build -t jjino/travis_test:v1.0 .
+script:
+  - docker run jjino/travis_test:v1.0 hostname -- --coverage
+deploy:
+  provider: script
+    script: bash [scriptname].sh   #jino.sh
+    on:
+      branch: master
