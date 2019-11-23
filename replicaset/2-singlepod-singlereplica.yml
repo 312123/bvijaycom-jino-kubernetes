@@ -3,9 +3,9 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: httpd-replica
-  namespace: lucifer
+  namespace: facebook
 spec:
-  replicas: 4
+  replicas: 1
   minReadySeconds: 10
   selector:
     matchLabels:
