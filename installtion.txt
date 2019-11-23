@@ -9,5 +9,4 @@ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin
    openssl dgst -sha256 -hex | sed 's/^.* //'
 
 
-kubeadm join --token <token> <master-ip>:<master-port>
---discovery-token-ca-cert-hash sha256:<hash>
+kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
