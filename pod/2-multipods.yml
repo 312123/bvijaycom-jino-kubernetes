@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: multicontainer-pods
-  namespace: lucifer
+  namespace: facebook
   labels:
     app: httpd
     tier: frontend-backend
