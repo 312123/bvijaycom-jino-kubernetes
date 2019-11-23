@@ -91,4 +91,8 @@ all namespace pods view
 
 
 
+#kubectl version
+#kubectl cluster-info
+#kubectl get pods -n kube-system
+#kubectl get events
 
