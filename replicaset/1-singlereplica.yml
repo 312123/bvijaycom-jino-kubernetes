@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx-replica
-  namespace: lucifer
+  namespace: twitter
 spec:
   replicas: 1
   minReadySeconds: 10
