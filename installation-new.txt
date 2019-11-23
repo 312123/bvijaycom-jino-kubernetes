@@ -56,7 +56,6 @@ EOF
 # systemctl restart docker
 
 *********************************************************************************
-
 run this below command in only node1.coz we are going to make node1 as kube master
 
 # kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=192.168.0.0/16
@@ -99,3 +98,46 @@ Manual token create and add policy:
 #kubectl cluster-info
 #kubectl get pods -n kube-system
 #kubectl get events
+
+
+***************************************************************************************************************
+
+
+execute all playbooks in the below manner to get you loud better....
+
+1. create name space
+
+https://github.com/FourTimes/Kubernetes/blob/master/namespace/namespace.yaml
+
+2. create pods...
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/1-singlepod.yml
+https://github.com/FourTimes/Kubernetes/blob/master/pod/2-multipods.yml
+https://github.com/FourTimes/Kubernetes/blob/master/pod/3-storage.yml
+https://github.com/FourTimes/Kubernetes/blob/master/pod/4-multistorage.yml
+https://github.com/FourTimes/Kubernetes/blob/master/pod/5-full.yaml
+
+find out the below yaml file is deployed to which name space
+
+https://github.com/FourTimes/Kubernetes/blob/master/pod/6-example.yml
+
+3. services
+
+https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-twiiter.yaml
+
+the above loadbalancer yaml will work only if you have the nodes in google cloud.because you will have the public ip.
+
+https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-twitter.yaml
+
+4. Replica set
+
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/1-singlereplica.yml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/2-singlepod-singlereplica.yml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/3-multireplica.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/4-singlepod-singlereplica-error.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/replicaset/5-replica-nodeport.yml
+
+5. Deployments
+
