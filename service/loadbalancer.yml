@@ -1,19 +1,28 @@
 ---
 apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver
+  namespace: twitter
+  labels:
+    role: web-service
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+- containerPort: 80
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: web-service
-  namespace: lucifer
+  namespace: twitter
   labels:
     role: web-service
 spec:
   selector:
-    role: webserver
-    # version: 'v3'
-    tier: frond
-    jane: akil
+    role: web-service
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
-    protocol: TCP
