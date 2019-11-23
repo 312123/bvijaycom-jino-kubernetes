@@ -80,6 +80,15 @@ file update
 
 # kubectl apply -f [filename.yaml]
 
+all namespace pods view
+------------------------
+
+# kubectl get pods --all-namespaces
+
+# kubectl create namespace twitter
+# kubectl get all -n twitter
+# kubectl get all -n twitter
+
 
 
 
