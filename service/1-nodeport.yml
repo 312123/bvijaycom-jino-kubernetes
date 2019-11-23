@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: webserver
-  namespace: lucifer
+  namespace: twitter
   labels:
     role: web-service
 spec:
@@ -17,7 +17,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web-service
-  namespace: lucifer
+  namespace: twitter
   labels:
     role: web-service
 spec:
