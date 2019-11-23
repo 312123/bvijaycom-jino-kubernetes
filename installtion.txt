@@ -69,13 +69,16 @@ Manual token create and add policy:
 #openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null |  openssl dgst         -sha256 -hex | sed 's/^.* //'
 
 
-kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
+# kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
 
 
 
 kubectl command handling Methods:
----------------------------------
 
+
+file update
+
+# kubectl apply -f [filename.yaml]
 
 
 
