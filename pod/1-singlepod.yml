@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: webserver
-  namespace: lucifer
+  namespace: twitter
   labels:
     app: nginx
     tier: front
