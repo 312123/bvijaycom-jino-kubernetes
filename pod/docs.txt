@@ -1,1 +1,42 @@
 Get https://104.196.160.178/api/v1/namespaces/default/pods/webserver
+
+
+kubectl describe pod <podname>
+
+
+************************
+
+
+---
+#single pod with multiple container's
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multicontainer-pods
+  namespace: facebook
+  labels:
+    app: httpd
+    tier: frontend-backend
+    version: v1
+spec:
+  containers:
+  - name: web
+    image: httpd
+    ports:
+    - containerPort: 80
+  - name: db
+    image: postgres
+    ports:
+- containerPort: 5432
+
+
+
+in the above we have 2 containers in single pod.if i want to check logs in one of the container then do below command
+
+
+kubectl logs pod/multicontainer-pods -c web ---> i can see logs from web container
+kubectl logs pod/multicontainer-pods -c db ---> i can see logs from db container
+
+****************************************************
+
+kubectl exec -it pod/multicontainer-pods -c web bash --> i can login to web container
