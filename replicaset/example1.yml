@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replica
+  namespace: facebook
+spec:
+  replicas: 5
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: webserver
+  template:
+    metadata:
+      name: web
+      labels:
+        role: webserver
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: webdata
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: webdata
+        hostPath:
+          path: /tmp
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd-service
+  namespace: facebook
+spec:
+  selector:
+    role: webserver
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 32002
