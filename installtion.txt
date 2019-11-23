@@ -75,3 +75,11 @@ kubernetes API working machanisam
 ----------------------------
 #https://v1-12.docs.kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
+
+kubectl command handling Methods:
+---------------------------------
+
+
+
+
+
