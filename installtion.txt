@@ -53,7 +53,7 @@ verify:
 # kubectl get nodes
 # kubectl get pods --all-namespaces
 # kubectl get nodes --show-lables
-# kubectl get 
+# kubectl get namespaces
 
 Recreate tokens:
 ---------------
@@ -71,5 +71,7 @@ Manual token create and add policy:
 kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
 
 
+kubernetes API working machanisam
+----------------------------
 #https://v1-12.docs.kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
