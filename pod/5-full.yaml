@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: akil
+  name: twitter
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: webserver
-  namespace: akil
+  namespace: twitter
   labels:
     app: webdb
     tier: backend
