@@ -1,0 +1,58 @@
+## This is roles and rolebinding for users and particular namespace only!!!
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: new-joiner
+  namespace: jino
+rules:
+- apiGroups: ["","apps"]          # "" indicates the core API group
+  resources: ["*"]                # Everything under core API PODS,SERVICES,NOT DEPLOYMENTS
+  verbs: ["get", "watch", "list"] # like commands get watch list not all create apply delete somethik=ng like as...
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: user-restrict-role-binding
+  namespace: jino
+subjects:
+- kind: User
+  name: jino
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: new-joiner        #Role refer from new-joiner
+  apiGroup: rbac.authorization.k8s.io
+
+
+
+
+#  kubectl config view  ## NOTE: all information like user clustername api server
+##LOGIN to jino
+#kubectl config view
+#kubectl config set-cluster kubernetes --server=https://10.142.0.7:6443
+#kubectl config view
+#kubectl get all  ##unable to connect
+#kubectl config set-context jinocontext --user jino --cluster kubernetes
+#kubectl config view
+#kubectl config use-context jinocontext
+#kubectl get all #asking username or password or X509 Certficate
+
+#su - root or superuser
+#openssl genrsa -out jino.key 2048 ##in super user
+#openssl req -new -key jino.key -out jino.csr -subj "/CN=jino/O=jino"
+#sudo cp /etc/kubernetes/pki/ca.*
+#openssl x509 -req -in jino.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out jino.crt -days 365
+#sudo mkdir /home/jino/.certs
+#sudo mv jino.crt /home/jino/.certs
+#sudo mv jino.key /home/jino/.certs
+#sudo mv ca.crt /home/jino/.certs ## Dont move any other files because security base
+#sudo chown -R jino:jino /home/jino/.certs
+
+#su - jino
+# cd /home/jino/.certs
+#kubectl  config set-credentials jino --client-certificate=jino.crt --client-key=jino.key
+#kubectl config set-cluster kubernetes --certificate-authority=ca.crt
+
+#kubectl config set-context $(kubectl config current-context) --namespace jino ##now see exact namespace only!!
