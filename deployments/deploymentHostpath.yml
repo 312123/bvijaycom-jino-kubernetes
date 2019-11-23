@@ -35,11 +35,4 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
-        volumeMounts:
-        - name: nginxdata
-          mountPath: /usr/share/nginx/html
-      volumes:
-      - name: nginxdata
-        hostPath:
-          path: /var/www/html
-          type: DirectoryOrCreate
+
