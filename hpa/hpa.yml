@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: lucifer
+  namespace: twitter
 spec:
   strategy:
     type: RollingUpdate
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: webservice
-  namespace: lucifer
+  namespace: twitter
   labels:
     role: web-service
 spec:
@@ -61,7 +61,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: nginx-deployment-vote
-  namespace: lucifer
+  namespace: twitter
 spec:
   minReplicas: 4
   maxReplicas: 15
@@ -75,7 +75,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: tesq
-  namespace: lucifer
+  namespace: twitter
   annotations:
      kubernetes.io/ingress.class: traefik
 spec:
