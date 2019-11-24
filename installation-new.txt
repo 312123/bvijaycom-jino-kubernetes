@@ -99,6 +99,10 @@ Manual token create and add policy:
 #kubectl get pods -n kube-system
 #kubectl get events
 
+master convert to node
+----------------------
+
+kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ***************************************************************************************************************
 
