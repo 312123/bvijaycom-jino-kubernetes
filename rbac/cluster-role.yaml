@@ -41,7 +41,8 @@ roleRef:
 
 #su - root or superuser
 #openssl genrsa -out jino.key 2048 ##in super user
-#openssl req -new -key jino.key -out jino.csr -subj "/CN=jino/O=jino"
+# openssl req -new  -key jino.key -out jino.csr
+##   openssl req -new -key jino.key -out jino.csr -subj "/CN=jino/O=jino"
 #sudo cp /etc/kubernetes/pki/ca.*
 #openssl x509 -req -in jino.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out jino.crt -days 365
 #sudo mkdir /home/jino/.certs
