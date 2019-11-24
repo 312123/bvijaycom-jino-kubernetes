@@ -1,0 +1,18 @@
+watch -n 1 kubectl get  pod,deploy,rs,svc --show-labels
+kubectl apply -f 1-deployment-facebook.yaml
+kubectl get deployment
+kubectl get rs --show-labels
+kubectl get deploy,pods,rs
+kubectl rollout status deployment/nginx
+kubectl get pods --show-labels
+kubectl scale deployment/nginx --replicas=12
+kubectl rollout status deployment/nginx
+kubectl edit deploy/nginx
+kubectl apply -f 1-deployment-facebook.yaml
+kubectl rollout status deployment/nginx
+kubectl rollout history deploy/nginx
+kubectl rollout history deploy/nginx --revision=1
+kubectl apply -f 1-deployment-facebook.yaml
+kubectl rollout status
+kubectl rollout history deploy/nginx
+kubectl rollout history deploy/nginx --revision=xx
