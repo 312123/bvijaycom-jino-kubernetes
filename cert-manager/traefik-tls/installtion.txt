@@ -6,6 +6,6 @@ Requirements:
 
 1. Nginx Controller
 2. Global DNS domain
-3. Make Nginx controller loadbalancer IP to map DNS name
+3. Make traefik controller loadbalancer IP to map DNS name
 
 kubectl apply -f cert-manage-example-lets.yaml -f letsencrypt.yaml
