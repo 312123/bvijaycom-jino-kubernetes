@@ -75,10 +75,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - test.scanslips.in
-      secretName: test.scanslips.in  #automatically create by acme
+      - test.scan.in
+      secretName: test.scan.in  #automatically create by acme
   rules:
-  - host: test.scanslips.in
+  - host: test.scan.in
     http:
       paths:
       - path: /

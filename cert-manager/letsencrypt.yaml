@@ -23,18 +23,18 @@ spec:
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: test.scanslips.in
+  name: test.scan.in
 spec:
-  secretName: test.scanslips.in
+  secretName: test.scan.in
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer
-  commonName: test.scanslips.in
+  commonName: test.scan.in
   dnsNames:
-    - test.scanslips.in
+    - test.scan.in
   acme:
     config:
       - http01:
           ingressClass: nginx
         domains:
-          - test.scanslips.in
+          - test.scan.in
