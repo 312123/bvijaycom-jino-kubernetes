@@ -17,6 +17,21 @@ kubectl get deployment tiller-deploy -n kube-system
 
 helm search
 
+
+create helm repo:
+-----------------
+
+helm create jino
+
+cd tempates
+
+ rm -rf deployment.yaml 
+ rm -rf serviceaccount.yaml 
+ rm -rf service.yaml 
+
+
+
+
 helm install stable/nginx-ingress --name nginx-ingress
 
 helm repo list
@@ -28,5 +43,7 @@ kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+
+
 
 
