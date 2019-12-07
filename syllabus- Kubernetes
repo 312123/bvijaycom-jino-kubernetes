@@ -9,6 +9,7 @@ https://github.com/bvijaycom/jino-kubernetes/blob/master/installation-new.txt
 8.	Explain k8s networking ?
 9.	API call methods in k8s ?
 kubectl describe pod <podname> --> api url and verion will be showed here
+https://github.com/FourTimes/Kubernetes/blob/master/api
 
 10.	Services in k8s ?
 11.	How to handle services in what are the ways ?
