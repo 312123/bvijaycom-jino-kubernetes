@@ -118,6 +118,9 @@ find out the below yaml file is deployed to which name space
 
 https://github.com/FourTimes/Kubernetes/blob/master/pod/6-example.yml
 
+kubectl get pod
+kubectl describe pod <pod name>
+
 3. services
 
 https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
@@ -128,6 +131,9 @@ the above loadbalancer yaml will work only if you have the nodes in google cloud
 https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-facebook.yaml
 https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-twitter.yaml
 
+kubectl get services
+kubectl describe services
+
 4. Replica set
 
 https://github.com/FourTimes/Kubernetes/blob/master/replicaset/1-singlereplica.yml
@@ -136,6 +142,47 @@ https://github.com/FourTimes/Kubernetes/blob/master/replicaset/3-multireplica.ya
 https://github.com/FourTimes/Kubernetes/blob/master/replicaset/4-singlepod-singlereplica-error.yaml
 https://github.com/FourTimes/Kubernetes/blob/master/replicaset/5-replica-nodeport.yml
 
+kubectl get replicas
+kubectl describe replicas
+
 5. Deployments
+
+https://github.com/FourTimes/Kubernetes/blob/master/deployments/1-deployment-facebook.yaml
+https://github.com/FourTimes/Kubernetes/blob/master/deployments/2-deployment-twitter.yml
+
+kubectl get deploy
+kubectl describe deploy
+
+6. dameonsets
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/daemonset-nginx.yaml
+
+once i configured automatically if i add any linux machine then in that linux machine this ngnix also will be deployed
+
+kubectl get daemonsets
+kubectl descibe daemonsets
+
+
+7.init containers
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/init/node-redis/node.yml
+first deploy this and run kubectl get all command
+you will see init is waiting.coz the dependency is not yet launched or stopped
+https://github.com/bvijaycom/jino-kubernetes/blob/master/init/node-redis/redis.yml
+
+if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl get all command you will now see running state)
+
+
+8. HPA - horizontal pod autoscaling
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
+
+9. resource limits
+https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
+
+kubectl apply -f hpa.yml
+
+kubectl get all 
+
 
 
