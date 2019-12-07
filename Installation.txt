@@ -9,6 +9,9 @@ Auto-complate kubectl
 ---------------------
 # echo 'source <(kubectl completion bash)' >>~/.bashrc
 
+gcloud installtion
+https://cloud.google.com/sdk/docs/quickstart-linux
+
 
 
 # gcloud config set project [PROJECT_ID]
