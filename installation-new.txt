@@ -78,21 +78,14 @@ verify:
 # kubectl get nodes --show-lables
 # kubectl get namespaces
 
-Recreate tokens:
+Recreate tokens: (if i want to add one more new linux machine then use the below command to add it to the kube cluster)
 ---------------
-# kubeadm token create --print-join-command (you get some output from this command.
+# kubeadm token create --print-join-command 
+(you get some output from this command.
 copy that command and paste it to node4 and execute it.
 This will help you to add manually any new node to the kube cluster)
 
-**********************this is optional*****************************
-Manual token create and add policy:
-----------------------------------
-#kubeadm token list
-#kubeadm token create
-#openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null |  openssl dgst         -sha256 -hex | sed 's/^.* //'
-# kubeadm join --token <token> <master-ip>:6443 --discovery-token-ca-cert-hash sha256:<hash>
-**********************this is optional*****************************
-*******************************************************
+****************************
 
 #kubectl version
 #kubectl cluster-info
@@ -144,4 +137,5 @@ https://github.com/FourTimes/Kubernetes/blob/master/replicaset/4-singlepod-singl
 https://github.com/FourTimes/Kubernetes/blob/master/replicaset/5-replica-nodeport.yml
 
 5. Deployments
+
 
