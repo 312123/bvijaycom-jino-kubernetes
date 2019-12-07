@@ -1,0 +1,37 @@
+1.	What are the ways to install k8s
+https://github.com/bvijaycom/jino-kubernetes/blob/master/installation-new.txt
+
+2.	How to install k8s in cloud manually
+3.	How to install in cloud automatically (in this method master control will be with cloud provider)
+5.	Commands and explanation needed? –kubeadm,kubectl,kubeproxy,kubelet
+6.	What are the ways you can install kubectl
+7.	In k8s how the communications are happening?  GET ?  or POST ?
+8.	Explain k8s networking ?
+9.	API call methods in k8s ?
+kubectl describe pod <podname> --> api url and verion will be showed here
+
+10.	Services in k8s ?
+11.	How to handle services in what are the ways ?
+a.	Cluster IP
+b.	Node Port
+c.	External Name (or) External IP
+d.	Ingress
+e.	Loadbalancer
+
+12.	Explain label selector method in k8s and give example? 
+https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
+
+13.	Explain kubenetes cluster and give example ?
+14.	Why in one container we need to keep one image only ?
+15.	If we keep 2 image in one container what will happen?
+16.	If we keep 2 images in one container. assume that container is inside pod. then what will be the issue? (both image is running in different port) ?
+17.	If we keep 2 images in one container. assume that container is inside pod. Then what will be the issue? (both image is running in same port) ?
+18.	How to implement kubernetes cluster manually in 4 machines ?one machine should be become as an master ?.2 machines should become part of the kubernetes cluster ?. 3rd machine should be manually configuring and bring it to the kubernetes cluster.
+https://github.com/FourTimes/Kubernetes/blob/master/installation-new.txt
+19.	I just installed new linux machine.i want to add this new linux machine to existing kubernetes cluster.what is the steps you follow to bring the new linux machine to bring to kubernetes cluster ?
+20.	How to configure any node machine under any user to run kubectl commands to control kubernetes cluster ?
+
+21.	Refer this link
+
+https://github.com/FourTimes/Kubernetes/blob/master/installation-new.txt
+
