@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       role: webserver
-      jane: akil
+      environment: logging
     matchExpressions:
       - {key: version, operator: In, values: [v1, v2, v3]}
   template:
@@ -19,7 +19,7 @@ spec:
         role: webserver
         version: v3
         tier: frond
-        jane: akil
+        environment: logging
     spec:
       containers:
       - name: web
