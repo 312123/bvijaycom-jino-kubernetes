@@ -209,6 +209,8 @@ then
 run the below command again
 kubectl get pod,service,replicaset,deploy -n facebook -o wide
 
+rolling update --> https://github.com/bvijaycom/jino-kubernetes/blob/master/deployments/commands.txt
+
 
 6. dameonsets
 
