@@ -49,3 +49,18 @@ spec:
         hostPath:
           path: /var/jino
           type: DirectoryOrCreate
+ ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: facebook
+  labels:
+    role: web-service
+spec:
+  selector:
+    role: web
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 32001
