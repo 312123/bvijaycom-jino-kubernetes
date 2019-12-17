@@ -109,18 +109,53 @@ https://github.com/FourTimes/Kubernetes/blob/master/namespace/namespace.yaml
 2. create pods...
 
 https://github.com/FourTimes/Kubernetes/blob/master/pod/1-singlepod.yml
+
+kubectl get all -n twitter -l app=nginx
+
+now you need to understand that lablels will help you to create exact report and find the particular resources
+
+
 https://github.com/FourTimes/Kubernetes/blob/master/pod/2-multipods.yml
+
+kubectl get all -n facebook -l app=httpd
+
+kubectl exec -it pod/multicontainer-pods bash -n facebook
+
+kubectl exec -it pod/multicontainer-pods bash -n facebook -c web
+kubectl exec -it pod/multicontainer-pods bash -n facebook -c db
+
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/pod/2.1-duplicate-port-multipod.yaml
+
+same port it wont work ---
+
+kubectl describe pod/multicontainer-pods -n twitter
+
+in this only one container will run andother one will give you error
+
+kubectl get events (yuou wont get anything)
+kubectl logs pod/multicontainer-pods -n twitter
+
+kubectl logs pod/multicontainer-pods -n twitter -c httpd2
+kubectl logs pod/multicontainer-pods -n twitter -c httpd1
+
+
 https://github.com/FourTimes/Kubernetes/blob/master/pod/3-storage.yml
+
+kubectl get pods -n twitter -o wide
+
+check the directory has been created to that node
+
 https://github.com/FourTimes/Kubernetes/blob/master/pod/4-multistorage.yml
 https://github.com/FourTimes/Kubernetes/blob/master/pod/5-full.yaml
-
+********************************************************************************************
 find out the below yaml file is deployed to which name space
 
 https://github.com/FourTimes/Kubernetes/blob/master/pod/6-example.yml
 
 kubectl get pod
 kubectl describe pod <pod name>
-
+********************************************************************************************
 3. services
 
 https://github.com/FourTimes/Kubernetes/blob/master/service/loadbalancer-facebook.yaml
@@ -130,6 +165,12 @@ the above loadbalancer yaml will work only if you have the nodes in google cloud
 
 https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-facebook.yaml
 https://github.com/FourTimes/Kubernetes/blob/master/service/nodeport-twitter.yaml
+
+kubectl get pod,services -n twitter -o wide
+
+35.227.119.203:32001
+
+access like above from all node machine ip addresses.it should work from all client machine ip address.then the proxy cluster is working good.
 
 kubectl get services
 kubectl describe services
@@ -145,6 +186,10 @@ https://github.com/FourTimes/Kubernetes/blob/master/replicaset/5-replica-nodepor
 kubectl get replicas
 kubectl describe replicas
 
+kubectl get pod,service,replicaset -n facebook -o wide
+
+labels --> service -- selector , replica -- match ---> should be same
+
 5. Deployments
 
 https://github.com/FourTimes/Kubernetes/blob/master/deployments/1-deployment-facebook.yaml
@@ -152,6 +197,18 @@ https://github.com/FourTimes/Kubernetes/blob/master/deployments/2-deployment-twi
 
 kubectl get deploy
 kubectl describe deploy
+
+kubectl get pod,service,replicaset,deploy -n facebook -o wide
+
+to understand please delete one pod 
+
+kubectl delete pod/nginx-74fcc59689-kn5j2 -n facebook
+
+then 
+
+run the below command again
+kubectl get pod,service,replicaset,deploy -n facebook -o wide
+
 
 6. dameonsets
 
