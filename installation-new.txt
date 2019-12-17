@@ -216,6 +216,22 @@ rolling update --> https://github.com/bvijaycom/jino-kubernetes/blob/master/depl
 
 https://github.com/bvijaycom/jino-kubernetes/blob/master/daemonset-nginx.yaml
 
+kubectl get all
+
+see now daemonset is 3 running in each client node.because daemonset is mandatory for each worker or client node.
+
+i have only 4 machine including server.so i am doing this test in node3.
+
+kubeadm reset (in node3 give it)
+
+in master run kubectl get all
+
+now you see only daemonset will 2.
+
+kubectl exec -ti pod/nginx-6jlrm bash (loging into one of the pod)
+
+
+
 once i configured automatically if i add any linux machine then in that linux machine this ngnix also will be deployed
 
 kubectl get daemonsets
@@ -233,6 +249,13 @@ if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl ge
 
 
 8. HPA - horizontal pod autoscaling
+
+first execute 
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress/nginx/deployment.yaml
+
+ingress controller and 3rd party addon will be enabled then run the HPA below
+
 
 https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
 
