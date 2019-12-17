@@ -1,17 +1,43 @@
 watch -n 1 kubectl get  pod,deploy,rs,svc --show-labels
 kubectl apply -f 1-deployment-facebook.yaml
-kubectl get deployment
-kubectl get rs --show-labels
-kubectl get deploy,pods,rs
-kubectl rollout status deployment/nginx
-kubectl get pods --show-labels
-kubectl scale deployment/nginx --replicas=12
+kubectl get deployment -n facebook
+kubectl get rs --show-labels -n facebook
+kubectl get deploy,pods,rs -n facebook
+kubectl rollout status deployment/nginx -n facebook
+kubectl get pods --show-labels -n facebook
+kubectl scale deployment/nginx --replicas=12 --> to increase your replicas
+kubectl edit deployment.apps/nginx -n facebook --> go and increase replicas count and save >--- then immedietly run the below command
 kubectl rollout status deployment/nginx
 kubectl edit deploy/nginx
 kubectl apply -f 1-deployment-facebook.yaml
 kubectl rollout status deployment/nginx
 kubectl rollout history deploy/nginx
-kubectl rollout history deploy/nginx --revision=1
+
+change the new version of image in the existing 1-deployment-facebook.yaml --> image: nginx:1.17.6 (goto hub.docker.com and get the 1.17.6 version from nginx image)
+
+kubectl rollout status deployment/nginx -n facebook
+kubectl rollout history deploy/nginx -n facebook
+
+now we got 2 history revision (last one only we are now in currently standing)
+
+again goto 
+
+change the new version of image in the existing 1-deployment-facebook.yaml --> image: nginx:1.16.1 (goto hub.docker.com and get the 1.16.1 version from nginx image)
+
+kubectl rollout status deployment/nginx -n facebook
+kubectl rollout history deploy/nginx -n facebook
+
+now we got 3 history revision (last one only we are now in currently standing)
+
+kubectl rollout undo deployment nginx --to-revision=1 -n facebook --> from 3rd version to first version we can go........
+
+to see the status now --> kubectl rollout status deploy/nginx -n facebook
+
+to see now it has been changed to version 1 ---> kubectl rollout history deploy/nginx -n facebook
+
+to see in detail this change happend or not to version 1 --> kubectl describe deployment nginx -n facebook (in this output see the image name)
+
+
 kubectl apply -f 1-deployment-facebook.yaml
 kubectl rollout status
 kubectl rollout history deploy/nginx
