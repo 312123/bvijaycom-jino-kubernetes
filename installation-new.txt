@@ -115,6 +115,7 @@ https://github.com/FourTimes/Kubernetes/blob/master/namespace/namespace.yaml
 
 https://github.com/FourTimes/Kubernetes/blob/master/pod/1-singlepod.yml
 
+kubectl apply -f 1-singlepod.yml
 kubectl get all -n twitter -l app=nginx
 
 kubectl exec -it pod/webserver bash -n twitter
@@ -134,9 +135,11 @@ kubectl exec -it pod/multicontainer-pods bash -n facebook -c db
 
 https://github.com/bvijaycom/jino-kubernetes/blob/master/pod/2.1-duplicate-port-multipod.yaml
 
+kubectl apply -f 2.1-duplicate-port-multipod.yaml
+
 same port it wont work ---
 
-kubectl describe pod/multicontainer-pods -n twitter
+kubectl describe pod/multicontainer-pods -n facebook
 
 in this only one container will run andother one will give you error
 
@@ -146,10 +149,15 @@ kubectl logs pod/multicontainer-pods -n twitter
 kubectl logs pod/multicontainer-pods -n twitter -c httpd2
 kubectl logs pod/multicontainer-pods -n twitter -c httpd1
 
-
+-----------------
+kubectl create ns twitter
 https://github.com/FourTimes/Kubernetes/blob/master/pod/3-storage.yml
+kubectl apply -f 3-storage.yml
 
 kubectl get pods -n twitter -o wide
+
+kubectl describe pod/database -n twitter
+
 
 check the directory has been created to that node
 
