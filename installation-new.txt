@@ -117,6 +117,8 @@ https://github.com/FourTimes/Kubernetes/blob/master/pod/1-singlepod.yml
 
 kubectl get all -n twitter -l app=nginx
 
+kubectl exec -it pod/webserver bash -n twitter
+
 now you need to understand that lablels will help you to create exact report and find the particular resources
 
 
