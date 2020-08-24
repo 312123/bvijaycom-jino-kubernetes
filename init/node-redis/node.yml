@@ -14,7 +14,7 @@ spec:
   - name: init-myservice
     image: jjino/test:latest
     args:
-    - bash
+    - sh
     - -c
     - while true; do STATUS=$(redis-cli -h redis-service -p 6379 ping); if [ $STATUS = "PONG" ]; then echo "Connected"; break; else echo "Not connected"; fi; sleep 10; done
 
