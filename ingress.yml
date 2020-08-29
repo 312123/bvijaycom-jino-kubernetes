@@ -1,5 +1,5 @@
-gcloud config set project <project-id>
-gcloud config set compute/zone <compute-zone>
+gcloud config set project smooth-ocean-179719
+gcloud config set compute/zone us-central1-a
 
 
 Prerequisite
