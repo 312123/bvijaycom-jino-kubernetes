@@ -268,20 +268,19 @@ https://github.com/bvijaycom/jino-kubernetes/blob/master/init/node-redis/redis.y
 if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl get all command you will now see running state)
 
 
-8. HPA - horizontal pod autoscaling
+8.1 Ingress
 
+create kubernetes cluster in google cloud/AWS cloud or AZURE.Then only you can test the following.
 
-https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress.yml
+https://raw.githubusercontent.com/bvijaycom/jino-kubernetes/master/ingress.yml
 
-
-first execute 
-
-https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress/nginx/deployment.yaml
-
-ingress controller and 3rd party addon will be enabled then run the HPA below
-
+8.2 HPA - horizontal pod autoscaling
 
 https://raw.githubusercontent.com/bvijaycom/jino-kubernetes/master/hpa/hpa.yml
+
+kubectl get all -n twitter
+kubectl exec -it pod/nginx-deployment-5dd8694cd5-bdpcs bash -n twitter
+stress --cpu 2 --timeout 60s
 
 9. resource limits
 https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
