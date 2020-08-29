@@ -270,6 +270,10 @@ if we deploy redis.yaml (kubectl apply -f redis.yaml then you run the kubectl ge
 
 8. HPA - horizontal pod autoscaling
 
+
+https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress.yml
+
+
 first execute 
 
 https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress/nginx/deployment.yaml
@@ -277,7 +281,7 @@ https://github.com/bvijaycom/jino-kubernetes/blob/master/ingress/nginx/deploymen
 ingress controller and 3rd party addon will be enabled then run the HPA below
 
 
-https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
+https://raw.githubusercontent.com/bvijaycom/jino-kubernetes/master/hpa/hpa.yml
 
 9. resource limits
 https://github.com/bvijaycom/jino-kubernetes/blob/master/hpa/hpa.yml
