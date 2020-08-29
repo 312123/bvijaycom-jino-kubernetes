@@ -1,3 +1,7 @@
+gcloud config set project project-id
+gcloud config set compute/zone compute-zone
+
+
 Prerequisite
 Kubernetes Cluster up and running with master and node or GKE or EKS or any other type of k8s setup.
 Here we are using GCP as a cloud provider for LoadBalancer Service. In case if you do not want to use LoadBalancer you can skip the steps.
