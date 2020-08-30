@@ -10,7 +10,7 @@ spec:
     rollingUpdate:
       maxSurge: 2
       maxUnavailable: 1
-  revisionHistoryLimit: 4
+  revisionHistoryLimit: 10
   paused: false
   replicas: 3
   minReadySeconds: 10
@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: nginx:1.17.6
+        image: nginx:1.18-alpine
         ports:
         - containerPort: 80
           protocol: TCP
